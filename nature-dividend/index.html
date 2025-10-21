@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nature Dividend Platform</title>
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="branding">
+        <img src="assets/leaf-icon.svg" alt="Nature Dividend logo" class="logo" />
+        <div>
+          <h1>Nature Dividend</h1>
+          <p class="tagline">Turning climate action into community dividends</p>
+        </div>
+      </div>
+      <nav class="main-nav" aria-label="Primary">
+        <button class="nav-btn is-active" data-target="individual">Individual Missions</button>
+        <button class="nav-btn" data-target="ngo">Project &amp; NGO Hub</button>
+      </nav>
+    </header>
+
+    <main>
+      <section id="individual" class="view is-active" aria-labelledby="individual-title">
+        <div class="view-header">
+          <div>
+            <h2 id="individual-title">Take action as an individual</h2>
+            <p>Discover hyperlocal climate projects, accept missions, and grow your impact streak.</p>
+          </div>
+          <div class="search-block">
+            <label for="mission-search" class="sr-only">Search missions</label>
+            <input
+              id="mission-search"
+              type="search"
+              placeholder="Search missions, topics, or neighborhoods"
+              aria-label="Search missions"
+            />
+            <select id="mission-filter" aria-label="Filter missions by type">
+              <option value="all">All mission types</option>
+              <option value="cleanup">Cleanups</option>
+              <option value="tree">Tree care</option>
+              <option value="biodiversity">Biodiversity</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="individual-layout">
+          <section class="panel" aria-labelledby="discover-title">
+            <header class="panel-header">
+              <h3 id="discover-title">1. Discover</h3>
+              <p class="panel-subtitle">Browse nearby projects aligned to your interests.</p>
+            </header>
+            <ul id="mission-list" class="mission-list" aria-live="polite"></ul>
+          </section>
+
+          <section class="panel" aria-labelledby="mission-detail-title">
+            <header class="panel-header">
+              <h3 id="mission-detail-title">2-5. Join, Accept &amp; Complete</h3>
+              <p class="panel-subtitle">Preview mission requirements, proof needs, and rewards.</p>
+            </header>
+            <div id="mission-detail" class="mission-detail empty-state">
+              <p>Select a mission to view full details.</p>
+            </div>
+          </section>
+
+          <section class="panel" aria-labelledby="recognition-title">
+            <header class="panel-header">
+              <h3 id="recognition-title">6-8. Recognition &amp; Retention</h3>
+              <p class="panel-subtitle">Track feedback loops, impact badges, and streak progress.</p>
+            </header>
+            <div id="recognition" class="recognition"></div>
+          </section>
+        </div>
+      </section>
+
+      <section id="ngo" class="view" aria-labelledby="ngo-title">
+        <div class="view-header">
+          <div>
+            <h2 id="ngo-title">Launch missions as a project or NGO</h2>
+            <p>Onboard regenerative projects, automate MRV, and re-engage your supporters.</p>
+          </div>
+          <button id="new-project" class="primary">Create new project workspace</button>
+        </div>
+
+        <div id="project-workflows" class="project-layout"></div>
+      </section>
+    </main>
+
+    <template id="mission-template">
+      <li class="mission-card">
+        <div>
+          <h4 class="mission-title"></h4>
+          <p class="mission-meta"></p>
+          <p class="mission-summary"></p>
+          <ul class="mission-tags"></ul>
+        </div>
+        <button class="secondary">View mission</button>
+      </li>
+    </template>
+
+    <template id="badge-template">
+      <div class="badge">
+        <span class="badge-icon" aria-hidden="true"></span>
+        <div>
+          <p class="badge-title"></p>
+          <p class="badge-desc"></p>
+        </div>
+      </div>
+    </template>
+
+    <template id="project-template">
+      <article class="project-card">
+        <header>
+          <h3 class="project-name"></h3>
+          <p class="project-location"></p>
+        </header>
+        <p class="project-summary"></p>
+        <div class="project-metrics"></div>
+        <div class="project-actions">
+          <button class="secondary" data-action="objectives">Define objectives</button>
+          <button class="secondary" data-action="missions">Launch missions</button>
+          <button class="secondary" data-action="verification">Proof &amp; MRV</button>
+          <button class="secondary" data-action="reports">Generate report</button>
+          <button class="secondary" data-action="reengage">Re-engage supporters</button>
+        </div>
+        <div class="project-detail"></div>
+      </article>
+    </template>
+
+    <dialog id="project-dialog" class="modal">
+      <form id="project-form" method="dialog">
+        <header>
+          <h2>Create a project workspace</h2>
+          <p>Share a snapshot so citizens can rally around your mission.</p>
+        </header>
+        <label>
+          Project name
+          <input name="name" required placeholder="e.g. Mangrove Guardians" />
+        </label>
+        <label>
+          Location &amp; geocode
+          <input name="location" required placeholder="e.g. Lagos Lagoon, Nigeria" />
+        </label>
+        <label>
+          Primary impact theme
+          <select name="theme" required>
+            <option value="Reforestation">Reforestation</option>
+            <option value="Ocean cleanup">Ocean cleanup</option>
+            <option value="Urban greening">Urban greening</option>
+            <option value="Biodiversity">Biodiversity</option>
+          </select>
+        </label>
+        <label>
+          Story &amp; call-to-action
+          <textarea name="summary" rows="3" required placeholder="Describe why this project matters and how citizens can help."></textarea>
+        </label>
+        <menu class="modal-actions">
+          <button value="cancel" type="reset">Cancel</button>
+          <button value="confirm" class="primary">Create project</button>
+        </menu>
+      </form>
+    </dialog>
+
+    <script src="assets/app.js" type="module"></script>
+  </body>
+</html>
